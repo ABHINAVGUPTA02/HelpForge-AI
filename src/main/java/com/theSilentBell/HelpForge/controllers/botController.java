@@ -30,7 +30,7 @@ public class botController {
     }
 
     // Get a specific bot
-    @GetMapping
+    @GetMapping(value="/{botId}")
     public ResponseEntity<String> getBots(@PathVariable String botId) {
         try {
             return new ResponseEntity<>("OK", HttpStatus.OK);
@@ -39,7 +39,7 @@ public class botController {
         }
     }
 
-    @DeleteMapping
+    @DeleteMapping(value="/{botId}")
     public ResponseEntity<String> deleteBot(@PathVariable String botId) {
         try {
             return new ResponseEntity<>("OK", HttpStatus.OK);

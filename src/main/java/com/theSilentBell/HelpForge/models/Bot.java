@@ -1,37 +1,44 @@
 package com.theSilentBell.HelpForge.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
+import java.util.UUID;
+
+@Entity
+@Table(name="bots")
+@Getter
+@Setter
 public class Bot {
-    private String id;
-    private String name;
+
+    @Id
+    @GeneratedValue
+    @UuidGenerator
+    private UUID botId;
+
+    private String botName;
+
     private String description;
 
-    Bot(String id, String name, String description) {
-        this.id = id;
-        this.name = name;
+    Bot(UUID botId, String botName, String description) {
+        this.botId = botId;
+        this.botName = botName;
         this.description = description;
     }
-    public String getId() {
-        return id;
-    }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    @Override
+    public String toString() {
+        return "Bot{" +
+                "botId=" + botId +
+                ", botName='" + botName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
 
