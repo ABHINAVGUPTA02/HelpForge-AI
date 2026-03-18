@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.theSilentBell.HelpForge.models.Bot;
 
 @RestController("/bot")
-public class botController {
+public class BotController {
 
     // create a new bot
     @PostMapping
