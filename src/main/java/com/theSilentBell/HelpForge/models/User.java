@@ -1,36 +1,39 @@
 package com.theSilentBell.HelpForge.models;
 
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.UuidGenerator;
+
+import java.util.UUID;
+
+@Entity
+@Table(name="users")
+@Getter
+@Setter
 public class User {
+    @Id
+    @GeneratedValue
+    @UuidGenerator
+    private UUID userId;
+
     private String username;
+
     private String password;
 
-    public User(){
-        //default constructor
-    }
+    public User(){}
 
-    public User(String username, String password) {
+    public User(UUID userId, String username, String password) {
+        this.userId = userId;
         this.username = username;
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 
     @Override
     public String toString() {
-        return super.toString();
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                '}';
     }
 }
