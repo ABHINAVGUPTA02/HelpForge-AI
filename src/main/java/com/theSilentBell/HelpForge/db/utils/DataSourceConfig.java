@@ -10,11 +10,11 @@ import org.springframework.context.annotation.Profile;
 import javax.sql.DataSource;
 
 @Configuration
-@Profile({"dev", "stage", "prod"})
+@Profile({"local", "dev", "stage", "prod"})
 public class DataSourceConfig {
 
     @Bean(name="postgresql")
-    @ConfigurationProperties(prefix="spring.datasource.schema1")
+    @ConfigurationProperties(prefix="spring.data.postgresql")
     public DataSource postgresqlDataSource() {
         return (HikariDataSource) DataSourceBuilder.create()
                 .type(HikariDataSource.class)
