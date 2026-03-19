@@ -11,7 +11,7 @@ import java.util.UUID;
 @Table(name="files")
 @Getter
 @Setter
-public class File {
+public class FileMetaData {
 
     @Id
     @GeneratedValue
@@ -22,8 +22,7 @@ public class File {
 
     private String filePath;
 
-    public File(UUID fileId, String fileName, String filePath) {
-        this.fileId = fileId;
+    public FileMetaData(String fileName, String filePath) {
         this.fileName = fileName;
         this.filePath = filePath;
     }

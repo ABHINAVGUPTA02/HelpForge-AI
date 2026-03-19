@@ -26,8 +26,7 @@ public class Bot {
 
     private String description;
 
-    Bot(UUID botId, String botName, String description) {
-        this.botId = botId;
+    Bot(String botName, String description) {
         this.botName = botName;
         this.description = description;
     }
