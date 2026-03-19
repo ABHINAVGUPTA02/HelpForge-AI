@@ -12,7 +12,8 @@ import com.theSilentBell.HelpForge.models.Bot;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("/bot")
+@RestController
+@RequestMapping("/bots")
 public class BotController {
 
     @Autowired
@@ -33,11 +34,11 @@ public class BotController {
     }
 
     // get all the bots associated with the user
-    @GetMapping("/{username}")
+    @GetMapping("/user/{username}")
     public ResponseEntity<String> getBots(@PathVariable() String username) {
         List<Bot> bots = botService.getBots(username);
 
-        if(bots.isEmpty() || bots.equals(null)) {
+        if(bots == null || bots.isEmpty()) {
             return ResponseEntity
                     .status(404)
                     .body("No bots found");
@@ -49,11 +50,11 @@ public class BotController {
     }
 
     // Get a specific bot
-    @GetMapping(value="/{botname}")
+    @GetMapping(value="/{botname}/files")
     public ResponseEntity<String> getFiles(@PathVariable String botname) {
         List<FileMetaData> files = botService.getFiles(botname);
 
-        if(files.isEmpty() || files.equals(null)) {
+        if(files == null || files.isEmpty()) {
             return ResponseEntity
                     .status(404)
                     .body("No files found");
