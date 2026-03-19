@@ -28,6 +28,13 @@ public class BotService {
         return true;
     }
 
+    public Boolean getBot(String botname) {
+        if(botRepository.findByBotname(botname).isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
     public List<Bot> getBots(String username) {
         List<Bot> bots = botRepository.findByUserUsername(username);
         if (!bots.isEmpty()) {

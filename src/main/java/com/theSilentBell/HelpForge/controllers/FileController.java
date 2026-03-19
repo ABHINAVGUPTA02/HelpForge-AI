@@ -1,26 +1,29 @@
 package com.theSilentBell.HelpForge.controllers;
 
+import com.theSilentBell.HelpForge.services.BotService;
 import com.theSilentBell.HelpForge.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
+@RequestMapping("/files")
 public class FileController {
 
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private BotService botService;
+
     @PostMapping(
-            value = "/upload",
+            value = "/upload/{botname}",
             consumes = "multipart/form-data"
     )
-    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
-        if(fileService.uploadFile(file)) {
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file,  @PathVariable("botname") String botname) {
+        if( botService.getBot(botname) && fileService.uploadFile(file)) {
             return ResponseEntity
                     .status(200)
                     .body("File uploaded successfully");
@@ -30,6 +33,7 @@ public class FileController {
                 .status(400)
                 .body("File upload failed");
     }
+
 
     public ResponseEntity<String> deleteFile(String filename) {
         if(fileService.deleteFile(filename)) {
