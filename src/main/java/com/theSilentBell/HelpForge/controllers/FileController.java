@@ -34,8 +34,8 @@ public class FileController {
                 .body("File upload failed");
     }
 
-
-    public ResponseEntity<String> deleteFile(String filename) {
+    @DeleteMapping("/{filename}")
+    public ResponseEntity<String> deleteFile(@RequestParam("filename") String filename) {
         if(fileService.deleteFile(filename)) {
             return ResponseEntity
                     .status(200)
