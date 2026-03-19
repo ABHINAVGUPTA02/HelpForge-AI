@@ -18,12 +18,16 @@ public class FileMetaData {
     @UuidGenerator
     private UUID fileId;
 
-    private String fileName;
+    private String filename;
 
     private String filePath;
 
-    public FileMetaData(String fileName, String filePath) {
-        this.fileName = fileName;
+    @ManyToOne
+    @JoinColumn(name="bot_id")
+    private Bot bot;
+
+    public FileMetaData(String filename, String filePath) {
+        this.filename = filename;
         this.filePath = filePath;
     }
 
@@ -31,7 +35,7 @@ public class FileMetaData {
     public String toString() {
         return "File{" +
                 "fileId=" + fileId +
-                ",fileName='" + fileName + '\'' +
+                ",fileName='" + filename + '\'' +
                 ", filePath='" + filePath + '\'' +
                 '}';
     }

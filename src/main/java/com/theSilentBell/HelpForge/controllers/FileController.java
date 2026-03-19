@@ -19,7 +19,7 @@ public class FileController {
             value = "/upload",
             consumes = "multipart/form-data"
     )
-    public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file) {
         if(fileService.uploadFile(file)) {
             return ResponseEntity
                     .status(200)
@@ -29,5 +29,17 @@ public class FileController {
         return ResponseEntity
                 .status(400)
                 .body("File upload failed");
+    }
+
+    public ResponseEntity<String> deleteFile(String filename) {
+        if(fileService.deleteFile(filename)) {
+            return ResponseEntity
+                    .status(200)
+                    .body("File deleted successfully");
+        }
+
+        return ResponseEntity
+                .status(400)
+                .body("File deleted failed");
     }
 }

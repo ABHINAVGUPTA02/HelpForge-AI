@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +21,9 @@ public class User {
     private String username;
 
     private String password;
+
+    @OneToMany(mappedBy="user", cascade=CascadeType.ALL)
+    private List<Bot> bots;
 
     public User(){}
 
