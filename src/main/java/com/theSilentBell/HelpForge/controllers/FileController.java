@@ -3,7 +3,6 @@ package com.theSilentBell.HelpForge.controllers;
 import com.theSilentBell.HelpForge.services.BotService;
 import com.theSilentBell.HelpForge.services.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
